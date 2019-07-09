@@ -17,10 +17,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
-    final int ROW_NUMBER = 6;
-    final int COLUMN_NUMBER = 7;
-    int moveCounter = 0;
+    final private int ROW_NUMBER = 6;
+    final private int COLUMN_NUMBER = 7;
+    private int moveCounter = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -33,43 +35,75 @@ public class Main extends Application {
                 StackPane tokenPane = new StackPane();
                 Rectangle square = new Rectangle(50, 50, Color.GRAY);
                 Circle circleInset = new Circle(20);
-                circleInset.setFill(Color.WHITE);
+                circleInset.setStyle("-fx-fill:white;");
+                //circleInset.setFill(Color.WHITE);
                 tokenPane.getChildren().addAll(square, circleInset);
                 boardPane.add(tokenPane, column, row);
                 tokenPane.setOnMouseClicked(mouseEvent -> {
                     System.out.println("Column" +GridPane.getColumnIndex(tokenPane));
                     System.out.println("Row" +GridPane.getRowIndex(tokenPane));
-                    final Node item = this.getNode(GridPane.getColumnIndex(tokenPane), GridPane.getRowIndex(tokenPane), boardPane);
-                    System.out.println(item.getStyle());
-                    if(moveCounter % 2 ==0){
-                        circleInset.setFill(Color.RED);
+                    try{
+                       int rowNumber = this.findEmptyRow(GridPane.getColumnIndex(tokenPane), boardPane);
+                       Node item = this.getNodeFromGridPane(rowNumber, GridPane.getColumnIndex(tokenPane),boardPane);
+                       item.setStyle("-fx-stroke:"+(moveCounter % 2 == 0 ? "red;" : "green;")  +"-fx-fill:yellow;");
+
+                       System.out.println(item.getStyle());
                     }
-                    else{
-                        circleInset.setFill(Color.GREEN);
+                    catch (NullPointerException npe){
+                        System.out.println("Null pointer exception");
                     }
+                    catch (Exception e){
+                        System.out.println("Some other exception");
+                    }
+                    //System.out.println(item.toString());
+
                     moveCounter++;
                 });
             }
         }
-
-
-
 
         primaryStage.setTitle("Connect Four");
         primaryStage.setScene(new Scene(boardPane, 500, 400));
         primaryStage.show();
     }
 
-    public Node getNode(int row, int column, GridPane gridPane){
-        Node result = null;
-        ObservableList<Node> childrens = gridPane.getChildren();
-        for (Node node: childrens){
-            System.out.println(node.toString());
-            if(GridPane.getColumnIndex(node) == column && GridPane.getRowIndex(node) == row){
-                result = node;
+    public Node getNodeFromGridPane(int row, int column, GridPane gridPane){
+        Node temp = null;
+        for (Node stack: gridPane.getChildren()){
+            if (stack instanceof Pane) {
+                if(GridPane.getColumnIndex(stack) == column && GridPane.getRowIndex(stack) == row){
+                    temp = this.getNodeFromPane((Pane) stack);
+                }
             }
         }
-        return result;
+        return temp;
+    }
+
+    public Node getNodeFromPane(Pane pane){
+        Node temp = null;
+        for(Node node: pane.getChildrenUnmodifiable()){
+            if(node instanceof Pane){
+                getNodeFromPane((Pane)node);
+            }
+            if (node instanceof Circle){
+                temp = node;
+            }
+        }
+        return temp;
+    }
+
+    public int findEmptyRow(int columnIndex, GridPane pane){
+        int index = -1;
+        for(int i = 0; i < ROW_NUMBER; i++){
+            Node temp = this.getNodeFromGridPane(i, columnIndex, pane);
+            String[] styles = temp.getStyle().split(";");
+            for(int position = 0; position < styles.length; position++){
+                if(styles[position].equals("-fx-fill:white")){
+                    index = i;
+                }
+            }
+        }
+        return index;
     }
 
     public static void main(String[] args) {
