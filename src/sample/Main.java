@@ -45,7 +45,7 @@ public class Main extends Application {
                     try{
                        int rowNumber = this.findEmptyRow(GridPane.getColumnIndex(tokenPane), boardPane);
                        Node item = this.getNodeFromGridPane(rowNumber, GridPane.getColumnIndex(tokenPane),boardPane);
-                       item.setStyle("-fx-stroke:"+(moveCounter % 2 == 0 ? "red;" : "green;")  +"-fx-fill:yellow;");
+                       item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
 
                        System.out.println(item.getStyle());
                     }
@@ -105,6 +105,47 @@ public class Main extends Application {
         }
         return index;
     }
+
+    public boolean runGame(GridPane pane){
+
+    }
+
+    public boolean checkRow(int rowIndex, GridPane pane){
+        int counter = 0;
+        boolean fullSetMatch = false;
+        for(int columnIndex = 1; columnIndex < COLUMN_NUMBER; columnIndex++){
+            Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
+            Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex - 1, pane);
+            if (temp0.getStyle().equals(temp1.getStyle())) {
+                counter++;
+                if(counter == 3){
+                    fullSetMatch = true;
+                }
+            } else {
+                counter = 0;
+            }
+        }
+        return fullSetMatch;
+    }
+
+    public boolean checkColumn(int columnIndex, GridPane pane){
+        int counter = 0;
+        boolean fullSetMatch = false;
+        for(int rowIndex = 1; rowIndex < ROW_NUMBER; rowIndex++){
+            Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
+            Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex - 1, pane);
+            if (temp0.getStyle().equals(temp1.getStyle())) {
+                counter++;
+                if(counter == 3){
+                    fullSetMatch = true;
+                }
+            } else {
+                counter = 0;
+            }
+        }
+        return fullSetMatch;
+    }
+
 
     public static void main(String[] args) {
         launch(args);
