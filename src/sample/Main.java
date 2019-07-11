@@ -106,8 +106,13 @@ public class Main extends Application {
         return index;
     }
 
-    public boolean runGame(GridPane pane){
-
+    public boolean checkWinner(int rowIndex, int columnIndex, GridPane pane){
+        return  this.checkColumn(columnIndex, pane) ||
+                this.checkRow(rowIndex, pane) ||
+                this.checkRightUpward(rowIndex, columnIndex, pane) ||
+                this.checkRightDownward(rowIndex, columnIndex, pane) ||
+                this.checkLeftDownward(rowIndex, columnIndex, pane) ||
+                this.checkLeftUpward(rowIndex, columnIndex, pane);
     }
 
     public boolean checkRow(int rowIndex, GridPane pane){
@@ -146,7 +151,94 @@ public class Main extends Application {
         return fullSetMatch;
     }
 
-    
+    public boolean checkRightDownward(int rowIndex, int columnIndex, GridPane pane){
+        int counter = 1;
+        boolean fullSetMatch = false;
+        int r = rowIndex;
+        int c = columnIndex;
+        while(r < ROW_NUMBER || c < COLUMN_NUMBER){
+            Node temp1 = this.getNodeFromGridPane(r, c, pane);
+            Node temp0 = this.getNodeFromGridPane(r - 1, c - 1, pane);
+            if(temp0.getStyle().equals(temp1.getStyle())){
+                counter++;
+                if( counter == 3 ){
+                    fullSetMatch = true;
+                }
+            }
+            else{
+                counter = 1;
+            }
+            r++; c++;
+        }
+        return fullSetMatch;
+    }
+
+    public boolean checkRightUpward(int rowIndex, int columnIndex, GridPane pane){
+        int counter = 1;
+        boolean fullSetMatch = false;
+        int r = rowIndex;
+        int c = columnIndex;
+        while(r >= 0  || c < COLUMN_NUMBER){
+            Node temp1 = this.getNodeFromGridPane(r, c, pane);
+            Node temp0 = this.getNodeFromGridPane(r + 1, c - 1, pane);
+            if(temp0.getStyle().equals(temp1.getStyle())){
+                counter++;
+                if( counter == 3 ){
+                    fullSetMatch = true;
+                }
+            }
+            else{
+                counter = 1;
+            }
+            r--; c++;
+        }
+        return fullSetMatch;
+    }
+
+    public boolean checkLeftDownward(int rowIndex, int columnIndex, GridPane pane){
+        int counter = 1;
+        boolean fullSetMatch = false;
+        int r = rowIndex;
+        int c = columnIndex;
+        while(r < ROW_NUMBER  || c >= 0){
+            Node temp1 = this.getNodeFromGridPane(r, c, pane);
+            Node temp0 = this.getNodeFromGridPane(r - 1, c + 1, pane);
+            if(temp0.getStyle().equals(temp1.getStyle())){
+                counter++;
+                if( counter == 3 ){
+                    fullSetMatch = true;
+                }
+            }
+            else{
+                counter = 1;
+            }
+            r++; c--;
+        }
+        return fullSetMatch;
+    }
+
+    public boolean checkLeftUpward(int rowIndex, int columnIndex, GridPane pane){
+        int counter = 1;
+        boolean fullSetMatch = false;
+        int r = rowIndex;
+        int c = columnIndex;
+        while(r >= 0 || c >= 0){
+            Node temp1 = this.getNodeFromGridPane(r, c, pane);
+            Node temp0 = this.getNodeFromGridPane(r + 1, c + 1, pane);
+            if(temp0.getStyle().equals(temp1.getStyle())){
+                counter++;
+                if( counter == 3 ){
+                    fullSetMatch = true;
+                }
+            }
+            else{
+                counter = 1;
+            }
+            r--; c--;
+        }
+        return fullSetMatch;
+    }
+
 
 
     public static void main(String[] args) {
