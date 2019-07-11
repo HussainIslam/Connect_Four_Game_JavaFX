@@ -40,17 +40,32 @@ public class Main extends Application {
                 tokenPane.getChildren().addAll(square, circleInset);
                 boardPane.add(tokenPane, column, row);
                 tokenPane.setOnMouseClicked(mouseEvent -> {
-                    System.out.println("Column" +GridPane.getColumnIndex(tokenPane));
-                    System.out.println("Row" +GridPane.getRowIndex(tokenPane));
                     try{
-                       int rowNumber = this.findEmptyRow(GridPane.getColumnIndex(tokenPane), boardPane);
-                       Node item = this.getNodeFromGridPane(rowNumber, GridPane.getColumnIndex(tokenPane),boardPane);
+                       int columnNumber = GridPane.getColumnIndex(tokenPane);
+                       int rowNumber = this.findEmptyRow(columnNumber, boardPane);
+                       System.out.println("Column: " +columnNumber + " Row: " +rowNumber);
+                       Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
                        item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
-
-                       System.out.println(item.getStyle());
+                        System.out.println("We have a winner: " +this.checkWinner(rowNumber, columnNumber, boardPane));
+                        System.out.println("Check row: " +this.checkRow(rowNumber, boardPane));
+                        System.out.println("check column: " +this.checkColumn(columnNumber, boardPane));
+                        System.out.println("check right up: " +this.checkRightUpward(rowNumber, columnNumber, boardPane));
+                        System.out.println("check right down: " +this.checkRightDownward(rowNumber, columnNumber, boardPane));
+                        System.out.println("check left up: " +this.checkLeftUpward(rowNumber, columnNumber, boardPane));
+                        System.out.println("check left down: " +this.checkLeftDownward(rowNumber, columnNumber, boardPane));
+                       if(this.checkWinner(rowNumber, columnNumber, boardPane)){
+                           String winner;
+                           if(moveCounter % 2 == 0){
+                               winner = "Player 1 is the winner";
+                           }
+                           else {
+                               winner = "Player 2 is the winner";
+                           }
+                           System.out.println(winner);
+                       }
                     }
                     catch (NullPointerException npe){
-                        System.out.println("Null pointer exception");
+                        npe.printStackTrace();
                     }
                     catch (Exception e){
                         System.out.println("Some other exception");
@@ -236,6 +251,7 @@ public class Main extends Application {
             }
             r--; c--;
         }
+        System.out.println("Check left upward: " +fullSetMatch);
         return fullSetMatch;
     }
 
