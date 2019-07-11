@@ -8,7 +8,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -26,10 +28,22 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        BorderPane mainPane = new BorderPane();
         GridPane boardPane = new GridPane();
         boardPane.setAlignment(Pos.BOTTOM_LEFT);
-        boardPane.setGridLinesVisible(true);
+        mainPane.setCenter(boardPane);
+
+        Label textWin = new Label("");
+        mainPane.setTop(textWin);
+
+        Circle player1Token = new Circle();
+        player1Token.setStyle("-fx-fill:red;");
+        mainPane.setLeft(player1Token);
+
+        Circle player2Token = new Circle();
+        player2Token.setStyle("-fx-fill:green;");
+        mainPane.setRight(player2Token);
+
         for (int row = 0; row < ROW_NUMBER; row++){
             for (int column = 0; column < COLUMN_NUMBER; column++){
                 StackPane tokenPane = new StackPane();
@@ -61,7 +75,8 @@ public class Main extends Application {
                            else {
                                winner = "Player 2 is the winner";
                            }
-                           System.out.println(winner);
+                           //System.out.println(winner);
+                           textWin.setText(winner);
                        }
                     }
                     catch (NullPointerException npe){
@@ -78,7 +93,7 @@ public class Main extends Application {
         }
 
         primaryStage.setTitle("Connect Four");
-        primaryStage.setScene(new Scene(boardPane, 500, 400));
+        primaryStage.setScene(new Scene(mainPane, 500, 400));
         primaryStage.show();
     }
 
