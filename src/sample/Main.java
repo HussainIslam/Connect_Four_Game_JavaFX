@@ -1,26 +1,19 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.event.EventType;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import javax.security.auth.callback.LanguageCallback;
-import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main extends Application {
     final private int ROW_NUMBER = 6;
@@ -29,6 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        AtomicBoolean haveWinner = new AtomicBoolean(false);
         BorderPane mainPane = new BorderPane();
         mainPane.setPadding(new Insets(10, 10, 10, 10));
         BorderPane.setAlignment(mainPane, Pos.BOTTOM_CENTER);
@@ -87,39 +81,41 @@ public class Main extends Application {
                 tokenPane.getChildren().addAll(square, circleInset);
                 boardPane.add(tokenPane, column, row);
                 tokenPane.setOnMouseClicked(mouseEvent -> {
-                    try{
-                       int columnNumber = GridPane.getColumnIndex(tokenPane);
-                       int rowNumber = this.findEmptyRow(columnNumber, boardPane);
-                       if(rowNumber < 0){
-                           throw new RowOutOfBoundsException();
-                       }
-                       System.out.println("Row number: " +rowNumber);
-                       Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
-                       item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
-                       nextPlayer.setText("Next Move: Player " +(moveCounter % 2 == 0 ? "2" : "1"));
-                       if(this.checkWinner(rowNumber, columnNumber, boardPane)){
-                           String winner;
-                           if(moveCounter % 2 == 0){
-                               winner = "Player 1 is the winner";
+                    if (!haveWinner.get()) {
+                        try{
+                           int columnNumber = GridPane.getColumnIndex(tokenPane);
+                           int rowNumber = this.findEmptyRow(columnNumber, boardPane);
+                           if(rowNumber < 0){
+                               throw new RowOutOfBoundsException();
                            }
-                           else {
-                               winner = "Player 2 is the winner";
+                           Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
+                           item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
+                           nextPlayer.setText("Next Move: Player " +(moveCounter % 2 == 0 ? "2" : "1"));
+                           if(this.checkWinner(rowNumber, columnNumber, boardPane)){
+                               haveWinner.set(true);
+                               String winner;
+                               if(moveCounter % 2 == 0){
+                                   winner = "Player 1 is the winner";
+                               }
+                               else {
+                                   winner = "Player 2 is the winner";
+                               }
+                               textWin.setText(winner);
                            }
-                           textWin.setText(winner);
-                       }
-                    }
-                    catch (RowOutOfBoundsException roobe){
-                        this.generateAlert(Alert.AlertType.ERROR, "Error!", "Row Out Of Bounds", "Please select another column. " +
-                                "The column you selected is full.");
-                    }
-                    catch (NullPointerException npe){
-                        npe.printStackTrace();
-                    }
-                    catch (Exception e){
-                        System.out.println("Some other exception");
-                    }
+                        }
+                        catch (RowOutOfBoundsException roobe){
+                            this.generateAlert(Alert.AlertType.ERROR, "Error!", "Row Out Of Bounds", "Please select another column. " +
+                                    "The column you selected is full.");
+                        }
+                        catch (NullPointerException npe){
+                            npe.printStackTrace();
+                        }
+                        catch (Exception e){
+                            System.out.println("Some other exception");
+                        }
 
-                    moveCounter++;
+                        moveCounter++;
+                    }
                 });
             }
         }
@@ -250,7 +246,7 @@ public class Main extends Application {
             }
             rowIndex--; columnIndex++;
         }
-        System.out.println("----------------------------------------------");
+        //System.out.println("----------------------------------------------");
         return fullSetMatch;
     }
 
