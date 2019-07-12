@@ -41,9 +41,13 @@ public class Main extends Application {
         player1Token.setStyle("-fx-fill:red;");
         player1Side.getChildren().add(player1Token);
 
+        VBox player2Side = new VBox();
+        player2Side.setAlignment(Pos.BOTTOM_CENTER);
+        mainPane.setRight(player2Side);
+
         Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;");
-        mainPane.setRight(player2Token);
+        player2Side.getChildren().add(player2Token);
 
         for (int row = 0; row < ROW_NUMBER; row++){
             for (int column = 0; column < COLUMN_NUMBER; column++){
