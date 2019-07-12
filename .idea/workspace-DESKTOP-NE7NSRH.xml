@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="modification: active player token highlighting" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="checkLeftDown includes no checking for first column and incremental checking for last column">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -63,26 +65,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="113" selection-start-line="113" selection-end-line="113" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/module-info.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/RowOutOfBoundsException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="97">
+              <caret line="251" selection-start-line="251" selection-end-line="251" />
+              <folding>
+                <element signature="e#9821#9822#0" expanded="true" />
+                <element signature="e#9849#9850#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state relative-caret-position="64">
               <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
@@ -102,9 +90,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>println</find>
+    </findStrings>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -118,7 +110,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/module-info.java" />
-        <option value="$PROJECT_DIR$/src/RowOutOfBoundsException.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
       </list>
     </option>
@@ -139,24 +130,30 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Task2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Task2" type="462c0819:PsiDirectoryNode" />
+              <item name="Connect_Four_Game_JavaFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Connect_Four_Game_JavaFX" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Task2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Task2" type="462c0819:PsiDirectoryNode" />
+              <item name="Connect_Four_Game_JavaFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Connect_Four_Game_JavaFX" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Connect_Four_Game_JavaFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Connect_Four_Game_JavaFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -170,9 +167,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
@@ -280,128 +276,100 @@
       <option name="project" value="LOCAL" />
       <updated>1562643835981</updated>
     </task>
-    <task id="LOCAL-00002" summary="checkRighDownward adjusted, last column stopped checking, first column checks only after last row">
-      <created>1562902703007</created>
+    <task id="LOCAL-00002" summary="adds circle in the correct position">
+      <created>1562706544838</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1562902703007</updated>
+      <updated>1562706544838</updated>
     </task>
-    <task id="LOCAL-00003" summary="checkRightUpward adjusted, last column stopped checking, first column stopped checking last row">
-      <created>1562903123891</created>
+    <task id="LOCAL-00003" summary="check column and check row functions implemented">
+      <created>1562772005271</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1562903123891</updated>
+      <updated>1562772005271</updated>
     </task>
-    <task id="LOCAL-00004" summary="checkLeftUpward adjusted, last column stopped checking last row, first column stopped checking">
-      <created>1562903408095</created>
+    <task id="LOCAL-00004" summary="diagonal checking functions">
+      <created>1562871003952</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1562903408095</updated>
+      <updated>1562871003953</updated>
     </task>
-    <task id="LOCAL-00005" summary="RowOutOfBoundsException added">
-      <created>1562904321597</created>
+    <task id="LOCAL-00005" summary="checking functions working">
+      <created>1562889002111</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1562904321597</updated>
+      <updated>1562889002111</updated>
     </task>
-    <task id="LOCAL-00006" summary="generateAlert method implemented">
-      <created>1562904440697</created>
+    <task id="LOCAL-00006" summary="added mainPane-BorderPane">
+      <created>1562889559858</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1562904440697</updated>
+      <updated>1562889559858</updated>
     </task>
-    <task id="LOCAL-00007" summary="row out of bounds exception handled with Alert message">
-      <created>1562904643426</created>
+    <task id="LOCAL-00007" summary="player1Side and Player1Token added">
+      <created>1562889899881</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1562904643426</updated>
+      <updated>1562889899881</updated>
     </task>
-    <task id="LOCAL-00008" summary="disable eventlistener after one of the players win">
-      <created>1562907065967</created>
+    <task id="LOCAL-00008" summary="player2Side and player2Token added">
+      <created>1562889998581</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1562907065967</updated>
+      <updated>1562889998581</updated>
     </task>
-    <task id="LOCAL-00009" summary="addition: restarting the game">
-      <created>1562908811204</created>
+    <task id="LOCAL-00009" summary="nextTurn pane and NextPlayer Label">
+      <created>1562891622868</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1562908811204</updated>
+      <updated>1562891622868</updated>
     </task>
-    <task id="LOCAL-00010" summary="addition: player one score">
-      <created>1562909003949</created>
+    <task id="LOCAL-00010" summary="positioned properly, functional">
+      <created>1562894698590</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1562909003949</updated>
+      <updated>1562894698590</updated>
     </task>
-    <task id="LOCAL-00011" summary="addition: player two score">
-      <created>1562909058682</created>
+    <task id="LOCAL-00011" summary="fixed checkLeftDown out of bound for column">
+      <created>1562898957278</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1562909058682</updated>
+      <updated>1562898957279</updated>
     </task>
-    <task id="LOCAL-00012" summary="addition: static score card for both players">
-      <created>1562909433181</created>
+    <task id="LOCAL-00012" summary="fixed checkLeftDown out of bound for row">
+      <created>1562899102213</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1562909433181</updated>
+      <updated>1562899102213</updated>
     </task>
-    <task id="LOCAL-00013" summary="addition: dynamic score card for both players">
-      <created>1562909740215</created>
+    <task id="LOCAL-00013" summary="checkLeftDown includes no checking for first column and incremental checking for last column">
+      <created>1562901308124</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1562909740215</updated>
+      <updated>1562901308124</updated>
     </task>
-    <task id="LOCAL-00014" summary="addition: game restart fully functional">
-      <created>1562910069194</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1562910069194</updated>
-    </task>
-    <task id="LOCAL-00015" summary="modification: fixed checkRow">
-      <created>1562910545097</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1562910545097</updated>
-    </task>
-    <task id="LOCAL-00016" summary="modification: fixed checkColumn">
-      <created>1562910609528</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1562910609528</updated>
-    </task>
-    <task id="LOCAL-00017" summary="modification: active player token highlighting">
-      <created>1562911644944</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1562911644944</updated>
-    </task>
-    <option name="localTasksCounter" value="18" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1010" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20307444" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.15885022" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -411,8 +379,8 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.16393442" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4264214" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2173913" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -422,7 +390,7 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3290398" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3277592" />
       <window_info anchor="bottom" id="Terminal" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -440,51 +408,25 @@
   <component name="VcsManagerConfiguration">
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="click event working" />
-    <MESSAGE value="checkRighDownward adjusted, last column stopped checking, first column checks only after last row" />
-    <MESSAGE value="checkRightUpward adjusted, last column stopped checking, first column stopped checking last row" />
-    <MESSAGE value="checkLeftUpward adjusted, last column stopped checking last row, first column stopped checking" />
-    <MESSAGE value="RowOutOfBoundsException added" />
-    <MESSAGE value="generateAlert method implemented" />
-    <MESSAGE value="row out of bounds exception handled with Alert message" />
-    <MESSAGE value="disable eventlistener after one of the players win" />
-    <MESSAGE value="addition: restarting the game" />
-    <MESSAGE value="addition: player one score" />
-    <MESSAGE value="addition: player two score" />
-    <MESSAGE value="addition: static score card for both players" />
-    <MESSAGE value="addition: dynamic score card for both players" />
-    <MESSAGE value="addition: game restart fully functional" />
-    <MESSAGE value="modification: fixed checkRow" />
-    <MESSAGE value="modification: fixed checkColumn" />
-    <MESSAGE value="modification: active player token highlighting" />
-    <option name="LAST_COMMIT_MESSAGE" value="modification: active player token highlighting" />
+    <MESSAGE value="adds circle in the correct position" />
+    <MESSAGE value="check column and check row functions implemented" />
+    <MESSAGE value="diagonal checking functions" />
+    <MESSAGE value="checking functions working" />
+    <MESSAGE value="added mainPane-BorderPane" />
+    <MESSAGE value="player1Side and Player1Token added" />
+    <MESSAGE value="player2Side and player2Token added" />
+    <MESSAGE value="nextTurn pane and NextPlayer Label" />
+    <MESSAGE value="positioned properly, functional" />
+    <MESSAGE value="fixed checkLeftDown out of bound for column" />
+    <MESSAGE value="fixed checkLeftDown out of bound for row" />
+    <MESSAGE value="checkLeftDown includes no checking for first column and incremental checking for last column" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkLeftDown includes no checking for first column and incremental checking for last column" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/RowOutOfBoundsException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module-info.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -492,10 +434,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/javafx-sdk-12.0.1/lib/javafx.graphics.jar!/javafx/scene/layout/VBox.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="97">
+          <caret line="251" selection-start-line="251" selection-end-line="251" />
+          <folding>
+            <element signature="e#9821#9822#0" expanded="true" />
+            <element signature="e#9849#9850#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -527,7 +495,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>JavaFX_12</last-edited>
+          <last-edited>javafx12</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
