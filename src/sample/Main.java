@@ -296,7 +296,11 @@ public class Main extends Application {
     }
 
     public void generateAlert(Alert.AlertType type, String title, String header, String message){
-
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public static void main(String[] args) {

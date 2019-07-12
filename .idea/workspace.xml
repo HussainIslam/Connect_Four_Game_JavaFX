@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="checkLeftUpward adjusted, last column stopped checking last row, first column stopped checking">
-      <change afterPath="$PROJECT_DIR$/src/sample/RowOutOfBoundsException.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="RowOutOfBoundsException added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Task2/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task2/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
@@ -68,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="298" column="8" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
+            <state relative-caret-position="419">
+              <caret line="302" column="28" selection-start-line="302" selection-start-column="28" selection-end-line="302" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -306,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562903408095</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="RowOutOfBoundsException added">
+      <created>1562904321597</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1562904321597</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -358,7 +364,8 @@
     <MESSAGE value="checkRighDownward adjusted, last column stopped checking, first column checks only after last row" />
     <MESSAGE value="checkRightUpward adjusted, last column stopped checking, first column stopped checking last row" />
     <MESSAGE value="checkLeftUpward adjusted, last column stopped checking last row, first column stopped checking" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkLeftUpward adjusted, last column stopped checking last row, first column stopped checking" />
+    <MESSAGE value="RowOutOfBoundsException added" />
+    <option name="LAST_COMMIT_MESSAGE" value="RowOutOfBoundsException added" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -396,8 +403,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="298" column="8" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
+        <state relative-caret-position="419">
+          <caret line="302" column="28" selection-start-line="302" selection-start-column="28" selection-end-line="302" selection-end-column="28" />
         </state>
       </provider>
     </entry>
