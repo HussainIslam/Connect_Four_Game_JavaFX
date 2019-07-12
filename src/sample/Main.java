@@ -44,7 +44,6 @@ public class Main extends Application {
         winnerPane.setAlignment(Pos.CENTER);
         mainPane.setTop(winnerPane);
 
-
         Font scoreFont = new Font("Arial", 40);
         Font winFont = new Font("Arial", 40);
         Font defaultFont = new Font("Arial", 15);
