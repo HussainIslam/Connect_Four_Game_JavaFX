@@ -4,11 +4,13 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -26,15 +28,27 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         BorderPane mainPane = new BorderPane();
+        mainPane.setPadding(new Insets(10, 10, 10, 10));
+        BorderPane.setAlignment(mainPane, Pos.BOTTOM_CENTER);
+
+
         GridPane boardPane = new GridPane();
         boardPane.setAlignment(Pos.BOTTOM_LEFT);
         mainPane.setCenter(boardPane);
+        BorderPane.setMargin(boardPane, new Insets(10, 10, 10, 10));
+        BorderPane.setAlignment(boardPane, Pos.TOP_RIGHT);
+
+        HBox winnerPane = new HBox();
+        winnerPane.setAlignment(Pos.CENTER);
+        mainPane.setTop(winnerPane);
+
 
         Label textWin = new Label("");
-        mainPane.setTop(textWin);
+        winnerPane.getChildren().add(textWin);
 
         VBox player1Side = new VBox();
         player1Side.setAlignment(Pos.BOTTOM_CENTER);
+        BorderPane.setMargin(player1Side, new Insets(10, 10, 10, 10));
         mainPane.setLeft(player1Side);
 
         Circle player1Token = new Circle(20);
@@ -43,11 +57,19 @@ public class Main extends Application {
 
         VBox player2Side = new VBox();
         player2Side.setAlignment(Pos.BOTTOM_CENTER);
+        BorderPane.setMargin(player2Side, new Insets(10, 10, 10, 10));
         mainPane.setRight(player2Side);
 
         Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;");
         player2Side.getChildren().add(player2Token);
+
+        HBox nextTurn = new HBox();
+        mainPane.setBottom(nextTurn);
+
+        Label nextPlayer = new Label("Next Move: Player 1");
+        nextTurn.getChildren().add(nextPlayer);
+
 
         for (int row = 0; row < ROW_NUMBER; row++){
             for (int column = 0; column < COLUMN_NUMBER; column++){
