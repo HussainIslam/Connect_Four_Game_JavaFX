@@ -10,10 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -36,11 +33,15 @@ public class Main extends Application {
         Label textWin = new Label("");
         mainPane.setTop(textWin);
 
-        Circle player1Token = new Circle();
-        player1Token.setStyle("-fx-fill:red;");
-        mainPane.setLeft(player1Token);
+        VBox player1Side = new VBox();
+        player1Side.setAlignment(Pos.BOTTOM_CENTER);
+        mainPane.setLeft(player1Side);
 
-        Circle player2Token = new Circle();
+        Circle player1Token = new Circle(20);
+        player1Token.setStyle("-fx-fill:red;");
+        player1Side.getChildren().add(player1Token);
+
+        Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;");
         mainPane.setRight(player2Token);
 
