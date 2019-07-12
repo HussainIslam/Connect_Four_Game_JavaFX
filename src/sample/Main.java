@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import javax.security.auth.callback.LanguageCallback;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -34,6 +35,7 @@ public class Main extends Application {
 
         GridPane boardPane = new GridPane();
         boardPane.setAlignment(Pos.BOTTOM_LEFT);
+
         mainPane.setCenter(boardPane);
         BorderPane.setMargin(boardPane, new Insets(10, 10, 10, 10));
         BorderPane.setAlignment(boardPane, Pos.TOP_RIGHT);
@@ -53,7 +55,8 @@ public class Main extends Application {
 
         Circle player1Token = new Circle(20);
         player1Token.setStyle("-fx-fill:red;");
-        player1Side.getChildren().add(player1Token);
+        Label player1 = new Label("Player 1");
+        player1Side.getChildren().addAll(player1Token, player1);
 
         VBox player2Side = new VBox();
         player2Side.setAlignment(Pos.BOTTOM_CENTER);
@@ -62,10 +65,13 @@ public class Main extends Application {
 
         Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;");
-        player2Side.getChildren().add(player2Token);
+        Label player2 = new Label("Player 2");
+        player2Side.getChildren().addAll(player2Token, player2);
 
         HBox nextTurn = new HBox();
+        nextTurn.setAlignment(Pos.CENTER);
         mainPane.setBottom(nextTurn);
+        BorderPane.setMargin(nextTurn, new Insets(10, 10, 10, 10));
 
         Label nextPlayer = new Label("Next Move: Player 1");
         nextTurn.getChildren().add(nextPlayer);
@@ -87,13 +93,14 @@ public class Main extends Application {
                        System.out.println("Column: " +columnNumber + " Row: " +rowNumber);
                        Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
                        item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
+                       nextPlayer.setText("Next Move: Player " +(moveCounter % 2 == 0 ? "2" : "1"));
                         //System.out.println("We have a winner: " +this.checkWinner(rowNumber, columnNumber, boardPane));
-                        System.out.println("Check row: " +this.checkRow(rowNumber, boardPane));
+                        /*System.out.println("Check row: " +this.checkRow(rowNumber, boardPane));
                         System.out.println("check column: " +this.checkColumn(columnNumber, boardPane));
                         System.out.println("check right up: " +this.checkRightUpward(rowNumber, columnNumber, boardPane));
                         System.out.println("check right down: " +this.checkRightDownward(rowNumber, columnNumber, boardPane));
                         System.out.println("check left up: " +this.checkLeftUpward(rowNumber, columnNumber, boardPane));
-                        System.out.println("check left down: " +this.checkLeftDownward(rowNumber, columnNumber, boardPane));
+                        System.out.println("check left down: " +this.checkLeftDownward(rowNumber, columnNumber, boardPane));*/
                        if(this.checkWinner(rowNumber, columnNumber, boardPane)){
                            String winner;
                            if(moveCounter % 2 == 0){
@@ -120,7 +127,7 @@ public class Main extends Application {
         }
 
         primaryStage.setTitle("Connect Four");
-        primaryStage.setScene(new Scene(mainPane, 500, 400));
+        primaryStage.setScene(new Scene(mainPane));
         primaryStage.show();
     }
 
