@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -43,6 +44,8 @@ public class Main extends Application {
         mainPane.setTop(winnerPane);
 
 
+        Font scoreFont = new Font("Arial", 40);
+
         Label textWin = new Label("");
         winnerPane.getChildren().add(textWin);
 
@@ -52,6 +55,8 @@ public class Main extends Application {
         mainPane.setLeft(player1Side);
 
         Label scorePlayer1 = new Label(Integer.toString(counterPlayerOne));
+        scorePlayer1.setPadding(new Insets(0, 0, 150, 0));
+        scorePlayer1.setFont(scoreFont);
         Circle player1Token = new Circle(20);
         player1Token.setStyle("-fx-fill:red;");
         Label player1 = new Label("Player 1");
@@ -63,6 +68,8 @@ public class Main extends Application {
         mainPane.setRight(player2Side);
 
         Label scorePlayer2 = new Label(Integer.toString(counterPlayerTwo));
+        scorePlayer2.setPadding(new Insets(0, 0, 150, 0));
+        scorePlayer2.setFont(scoreFont);
         Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;");
         Label player2 = new Label("Player 2");
