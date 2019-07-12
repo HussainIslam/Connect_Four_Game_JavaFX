@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -89,6 +90,10 @@ public class Main extends Application {
                     try{
                        int columnNumber = GridPane.getColumnIndex(tokenPane);
                        int rowNumber = this.findEmptyRow(columnNumber, boardPane);
+                       if(rowNumber < 0){
+                           throw new RowOutOfBoundsException();
+                       }
+                       System.out.println("Row number: " +rowNumber);
                        Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
                        item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
                        nextPlayer.setText("Next Move: Player " +(moveCounter % 2 == 0 ? "2" : "1"));
@@ -102,6 +107,9 @@ public class Main extends Application {
                            }
                            textWin.setText(winner);
                        }
+                    }
+                    catch (RowOutOfBoundsException roobe){
+                        roobe.printStackTrace();
                     }
                     catch (NullPointerException npe){
                         npe.printStackTrace();
@@ -230,7 +238,6 @@ public class Main extends Application {
         while(rowIndex > 0  && columnIndex < COLUMN_NUMBER - 1){
             Node temp1 = this.getNodeFromGridPane(rowIndex - 1, columnIndex + 1, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
-
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
@@ -272,8 +279,8 @@ public class Main extends Application {
         while(rowIndex > 0 && columnIndex > 0){
             Node temp1 = this.getNodeFromGridPane(rowIndex - 1, columnIndex - 1, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
-            System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
-            System.out.println("Temp0 row: " +(rowIndex - 1) + " Column: " +(columnIndex - 1));
+            //System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
+            //System.out.println("Temp0 row: " +(rowIndex - 1) + " Column: " +(columnIndex - 1));
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
@@ -288,7 +295,9 @@ public class Main extends Application {
         return fullSetMatch;
     }
 
+    public void generateAlert(Alert.AlertType type, String title, String header, String message){
 
+    }
 
     public static void main(String[] args) {
         launch(args);
