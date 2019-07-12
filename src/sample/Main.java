@@ -62,10 +62,11 @@ public class Main extends Application {
         BorderPane.setMargin(player2Side, new Insets(10, 10, 10, 10));
         mainPane.setRight(player2Side);
 
+        Label scorePlayer2 = new Label(Integer.toString(counterPlayerTwo));
         Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;");
         Label player2 = new Label("Player 2");
-        player2Side.getChildren().addAll(player2Token, player2);
+        player2Side.getChildren().addAll(scorePlayer2, player2Token, player2);
 
         HBox nextTurn = new HBox();
         nextTurn.setAlignment(Pos.CENTER);
