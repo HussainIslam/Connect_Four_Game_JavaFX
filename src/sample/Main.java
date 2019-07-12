@@ -46,9 +46,12 @@ public class Main extends Application {
 
 
         Font scoreFont = new Font("Arial", 40);
+        Font winFont = new Font("Arial", 40);
+        Font defaultFont = new Font("Arial", 15);
 
         Label textWin = new Label("");
         winnerPane.getChildren().add(textWin);
+        textWin.setFont(winFont);
 
         VBox player1Side = new VBox();
         player1Side.setAlignment(Pos.BOTTOM_CENTER);
@@ -61,6 +64,7 @@ public class Main extends Application {
         Circle player1Token = new Circle(20);
         player1Token.setStyle("-fx-fill:red;-fx-opacity:1;");
         Label player1 = new Label("Player 1");
+        player1.setFont(defaultFont);
         player1.setPadding(new Insets(20, 0, 0, 0));
         player1Side.getChildren().addAll(scorePlayer1, player1Token, player1);
 
@@ -75,6 +79,7 @@ public class Main extends Application {
         Circle player2Token = new Circle(20);
         player2Token.setStyle("-fx-fill:green;-fx-opacity:0.5;");
         Label player2 = new Label("Player 2");
+        player2.setFont(defaultFont);
         player2.setPadding(new Insets(20, 0, 0, 0));
         player2Side.getChildren().addAll(scorePlayer2, player2Token, player2);
 
@@ -84,8 +89,8 @@ public class Main extends Application {
         BorderPane.setMargin(nextTurn, new Insets(10, 10, 10, 10));
 
         Label nextPlayer = new Label("Next Move: Player 1");
+        nextPlayer.setFont(defaultFont);
         nextTurn.getChildren().add(nextPlayer);
-
 
         for (int row = 0; row < ROW_NUMBER; row++){
             for (int column = 0; column < COLUMN_NUMBER; column++){
@@ -119,12 +124,12 @@ public class Main extends Application {
 
                                String winner;
                                if(moveCounter % 2 == 0){
-                                   winner = "Player 1 is the winner";
+                                   winner = "PLAYER 1 WON";
                                    counterPlayerOne.getAndIncrement();
                                    scorePlayer1.setText(counterPlayerOne.toString());
                                }
                                else {
-                                   winner = "Player 2 is the winner";
+                                   winner = "PLAYER 2 WON";
                                    counterPlayerTwo.getAndIncrement();
                                    scorePlayer2.setText(counterPlayerTwo.toString());
                                }
@@ -144,7 +149,6 @@ public class Main extends Application {
                                    nextTurn.getChildren().add(nextPlayer);
                                    this.resetGame(boardPane);
                                });
-
                            }
                         }
                         catch (RowOutOfBoundsException roobe){
@@ -225,13 +229,11 @@ public class Main extends Application {
             Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             if (temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")) {
                 counter++;
-                System.out.println("After increase: " +counter);
                 if(counter == 4){
                     fullSetMatch = true;
                 }
             } else {
                 counter = 1;
-                System.out.println("After reset: " +counter);
             }
         }
         return fullSetMatch;
@@ -292,7 +294,6 @@ public class Main extends Application {
             }
             rowIndex--; columnIndex++;
         }
-        //System.out.println("----------------------------------------------");
         return fullSetMatch;
     }
 
