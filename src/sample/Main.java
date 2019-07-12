@@ -249,8 +249,7 @@ public class Main extends Application {
     public boolean checkLeftDownward(int rowIndex, int columnIndex, GridPane pane){
         int counter = 1;
         boolean fullSetMatch = false;
-        rowIndex--; columnIndex++;
-        while(rowIndex > 0 && rowIndex < ROW_NUMBER  && columnIndex >= 1){
+        while(rowIndex >= 0 && rowIndex < ROW_NUMBER - 1 && columnIndex > 0 && columnIndex < COLUMN_NUMBER){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
             System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
