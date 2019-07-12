@@ -125,6 +125,10 @@ public class Main extends Application {
                                reset.setOnAction(event -> {
                                    haveWinner.set(false);
                                    textWin.setText("");
+                                   moveCounter = 0;
+                                   nextTurn.getChildren().clear();
+                                   nextPlayer.setText("Next Move: Player 1");
+                                   nextTurn.getChildren().add(nextPlayer);
                                    this.resetGame(boardPane);
                                });
 
