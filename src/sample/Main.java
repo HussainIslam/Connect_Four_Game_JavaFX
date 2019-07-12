@@ -109,7 +109,8 @@ public class Main extends Application {
                        }
                     }
                     catch (RowOutOfBoundsException roobe){
-                        roobe.printStackTrace();
+                        this.generateAlert(Alert.AlertType.ERROR, "Error!", "Row Out Of Bounds", "Please select another column. " +
+                                "The column you selected is full.");
                     }
                     catch (NullPointerException npe){
                         npe.printStackTrace();
