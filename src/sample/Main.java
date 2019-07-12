@@ -83,24 +83,15 @@ public class Main extends Application {
                 Rectangle square = new Rectangle(50, 50, Color.GRAY);
                 Circle circleInset = new Circle(20);
                 circleInset.setStyle("-fx-fill:white;");
-                //circleInset.setFill(Color.WHITE);
                 tokenPane.getChildren().addAll(square, circleInset);
                 boardPane.add(tokenPane, column, row);
                 tokenPane.setOnMouseClicked(mouseEvent -> {
                     try{
                        int columnNumber = GridPane.getColumnIndex(tokenPane);
                        int rowNumber = this.findEmptyRow(columnNumber, boardPane);
-                       System.out.println("Column: " +columnNumber + " Row: " +rowNumber);
                        Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
                        item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
                        nextPlayer.setText("Next Move: Player " +(moveCounter % 2 == 0 ? "2" : "1"));
-                        //System.out.println("We have a winner: " +this.checkWinner(rowNumber, columnNumber, boardPane));
-                        /*System.out.println("Check row: " +this.checkRow(rowNumber, boardPane));
-                        System.out.println("check column: " +this.checkColumn(columnNumber, boardPane));
-                        System.out.println("check right up: " +this.checkRightUpward(rowNumber, columnNumber, boardPane));
-                        System.out.println("check right down: " +this.checkRightDownward(rowNumber, columnNumber, boardPane));
-                        System.out.println("check left up: " +this.checkLeftUpward(rowNumber, columnNumber, boardPane));
-                        System.out.println("check left down: " +this.checkLeftDownward(rowNumber, columnNumber, boardPane));*/
                        if(this.checkWinner(rowNumber, columnNumber, boardPane)){
                            String winner;
                            if(moveCounter % 2 == 0){
@@ -109,7 +100,6 @@ public class Main extends Application {
                            else {
                                winner = "Player 2 is the winner";
                            }
-                           //System.out.println(winner);
                            textWin.setText(winner);
                        }
                     }
@@ -119,7 +109,6 @@ public class Main extends Application {
                     catch (Exception e){
                         System.out.println("Some other exception");
                     }
-                    //System.out.println(item.toString());
 
                     moveCounter++;
                 });
@@ -203,13 +192,7 @@ public class Main extends Application {
         for(int rowIndex = 1; rowIndex < ROW_NUMBER; rowIndex++){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex - 1, columnIndex, pane);
-            //System.out.println("temp 1 in check column row number " +rowIndex +": "+temp1.toString());
-            //System.out.println("temp 0 in check column row number " +(rowIndex - 1) +": "+temp0.toString());
-            //System.out.println(temp0.getStyle().equals(temp1.getStyle()));
-            //System.out.println(!temp1.getStyle().equals("-fx-fill:white;"));
-            //System.out.println(!temp1.getStyle().equals("-fx-fill:white;"));
             if (temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")) {
-                System.out.println("Inside the if statement");
                 counter++;
                 if(counter == 3){
                     fullSetMatch = true;
@@ -224,14 +207,10 @@ public class Main extends Application {
     public boolean checkRightDownward(int rowIndex, int columnIndex, GridPane pane){
         int counter = 1;
         boolean fullSetMatch = false;
-        //int r = rowIndex;
-        //int c = columnIndex;
         rowIndex++; columnIndex++;
         while(rowIndex < ROW_NUMBER && columnIndex < COLUMN_NUMBER){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex - 1, columnIndex - 1, pane);
-            //System.out.println("temp 1 in check column row number " +rowIndex +": "+temp1.toString());
-            //System.out.println("temp 0 in check column row number " +(rowIndex - 1) +": "+temp0.toString());
             if(temp0.getStyle().equals(temp1.getStyle())  && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
@@ -253,8 +232,6 @@ public class Main extends Application {
         while(rowIndex >= 0  && columnIndex < COLUMN_NUMBER){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
-            //System.out.println("temp 1 in check column row number " +rowIndex +": "+temp1.toString());
-            //System.out.println("temp 0 in check column row number " +(rowIndex - 1) +": "+temp0.toString());
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
@@ -272,10 +249,12 @@ public class Main extends Application {
     public boolean checkLeftDownward(int rowIndex, int columnIndex, GridPane pane){
         int counter = 1;
         boolean fullSetMatch = false;
-        rowIndex--; columnIndex--;
-        while(rowIndex < ROW_NUMBER  && columnIndex >= 0){
+        rowIndex--; columnIndex++;
+        while(rowIndex < ROW_NUMBER  && columnIndex >= 1){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
-            Node temp0 = this.getNodeFromGridPane(rowIndex - 1, columnIndex + 1, pane);
+            Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
+            System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
+            System.out.println("Temp0 row: " +(rowIndex + 1) + " Column: " +(columnIndex - 1));
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
@@ -308,7 +287,6 @@ public class Main extends Application {
             }
             rowIndex--; columnIndex--;
         }
-        System.out.println("Check left upward: " +fullSetMatch);
         return fullSetMatch;
     }
 
