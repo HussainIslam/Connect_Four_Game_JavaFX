@@ -24,6 +24,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         AtomicBoolean haveWinner = new AtomicBoolean(false);
+        int counterPlayerOne = 0;
+        int counterPlayerTwo = 0;
         BorderPane mainPane = new BorderPane();
         mainPane.setPadding(new Insets(10, 10, 10, 10));
         BorderPane.setAlignment(mainPane, Pos.BOTTOM_CENTER);
@@ -49,10 +51,11 @@ public class Main extends Application {
         BorderPane.setMargin(player1Side, new Insets(10, 10, 10, 10));
         mainPane.setLeft(player1Side);
 
+        Label scorePlayer1 = new Label(Integer.toString(counterPlayerOne));
         Circle player1Token = new Circle(20);
         player1Token.setStyle("-fx-fill:red;");
         Label player1 = new Label("Player 1");
-        player1Side.getChildren().addAll(player1Token, player1);
+        player1Side.getChildren().addAll(scorePlayer1, player1Token, player1);
 
         VBox player2Side = new VBox();
         player2Side.setAlignment(Pos.BOTTOM_CENTER);
