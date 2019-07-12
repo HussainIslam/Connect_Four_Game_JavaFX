@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main extends Application {
     final private int ROW_NUMBER = 6;
@@ -25,8 +26,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         AtomicBoolean haveWinner = new AtomicBoolean(false);
-        int counterPlayerOne = 0;
-        int counterPlayerTwo = 0;
+        AtomicInteger counterPlayerOne = new AtomicInteger(0);
+        AtomicInteger counterPlayerTwo = new AtomicInteger(0);
         BorderPane mainPane = new BorderPane();
         mainPane.setPadding(new Insets(10, 10, 10, 10));
         BorderPane.setAlignment(mainPane, Pos.BOTTOM_CENTER);
@@ -54,7 +55,7 @@ public class Main extends Application {
         BorderPane.setMargin(player1Side, new Insets(10, 10, 10, 10));
         mainPane.setLeft(player1Side);
 
-        Label scorePlayer1 = new Label(Integer.toString(counterPlayerOne));
+        Label scorePlayer1 = new Label(counterPlayerOne.toString());
         scorePlayer1.setPadding(new Insets(0, 0, 150, 0));
         scorePlayer1.setFont(scoreFont);
         Circle player1Token = new Circle(20);
@@ -67,7 +68,7 @@ public class Main extends Application {
         BorderPane.setMargin(player2Side, new Insets(10, 10, 10, 10));
         mainPane.setRight(player2Side);
 
-        Label scorePlayer2 = new Label(Integer.toString(counterPlayerTwo));
+        Label scorePlayer2 = new Label(counterPlayerTwo.toString());
         scorePlayer2.setPadding(new Insets(0, 0, 150, 0));
         scorePlayer2.setFont(scoreFont);
         Circle player2Token = new Circle(20);
@@ -108,9 +109,13 @@ public class Main extends Application {
                                String winner;
                                if(moveCounter % 2 == 0){
                                    winner = "Player 1 is the winner";
+                                   counterPlayerOne.getAndIncrement();
+                                   scorePlayer1.setText(counterPlayerOne.toString());
                                }
                                else {
                                    winner = "Player 2 is the winner";
+                                   counterPlayerTwo.getAndIncrement();
+                                   scorePlayer2.setText(counterPlayerTwo.toString());
                                }
                                textWin.setText(winner);
 
