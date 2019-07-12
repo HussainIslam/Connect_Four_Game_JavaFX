@@ -207,16 +207,18 @@ public class Main extends Application {
     public boolean checkRow(int rowIndex, GridPane pane){
         int counter = 1;
         boolean fullSetMatch = false;
-        for(int columnIndex = 1; columnIndex < COLUMN_NUMBER; columnIndex++){
-            Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
-            Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex - 1, pane);
+        for(int columnIndex = 0; columnIndex < COLUMN_NUMBER - 1; columnIndex++){
+            Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex + 1, pane);
+            Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             if (temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")) {
                 counter++;
-                if(counter == 3){
+                System.out.println("After increase: " +counter);
+                if(counter == 4){
                     fullSetMatch = true;
                 }
             } else {
-                counter = 0;
+                counter = 1;
+                System.out.println("After reset: " +counter);
             }
         }
         return fullSetMatch;
@@ -230,11 +232,11 @@ public class Main extends Application {
             Node temp0 = this.getNodeFromGridPane(rowIndex - 1, columnIndex, pane);
             if (temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")) {
                 counter++;
-                if(counter == 3){
+                if(counter == 4){
                     fullSetMatch = true;
                 }
             } else {
-                counter = 0;
+                counter = 1;
             }
         }
         return fullSetMatch;
@@ -289,14 +291,12 @@ public class Main extends Application {
             Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
-                System.out.println("After increasing: "+counter);
                 if( counter == 4 ){
                     fullSetMatch = true;
                 }
             }
             else{
                 counter = 1;
-                System.out.println("After reset: "+counter);
             }
             rowIndex++; columnIndex--;
         }
