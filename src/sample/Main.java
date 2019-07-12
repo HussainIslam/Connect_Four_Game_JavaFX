@@ -56,11 +56,12 @@ public class Main extends Application {
         mainPane.setLeft(player1Side);
 
         Label scorePlayer1 = new Label(counterPlayerOne.toString());
-        scorePlayer1.setPadding(new Insets(0, 0, 150, 0));
+        scorePlayer1.setPadding(new Insets(0, 0, 130, 0));
         scorePlayer1.setFont(scoreFont);
         Circle player1Token = new Circle(20);
-        player1Token.setStyle("-fx-fill:red;");
+        player1Token.setStyle("-fx-fill:red;-fx-opacity:1;");
         Label player1 = new Label("Player 1");
+        player1.setPadding(new Insets(20, 0, 0, 0));
         player1Side.getChildren().addAll(scorePlayer1, player1Token, player1);
 
         VBox player2Side = new VBox();
@@ -69,11 +70,12 @@ public class Main extends Application {
         mainPane.setRight(player2Side);
 
         Label scorePlayer2 = new Label(counterPlayerTwo.toString());
-        scorePlayer2.setPadding(new Insets(0, 0, 150, 0));
+        scorePlayer2.setPadding(new Insets(0, 0, 130, 0));
         scorePlayer2.setFont(scoreFont);
         Circle player2Token = new Circle(20);
-        player2Token.setStyle("-fx-fill:green;");
+        player2Token.setStyle("-fx-fill:green;-fx-opacity:0.5;");
         Label player2 = new Label("Player 2");
+        player2.setPadding(new Insets(20, 0, 0, 0));
         player2Side.getChildren().addAll(scorePlayer2, player2Token, player2);
 
         HBox nextTurn = new HBox();
@@ -104,8 +106,17 @@ public class Main extends Application {
                            Node item = this.getNodeFromGridPane(rowNumber, columnNumber,boardPane);
                            item.setStyle("-fx-fill:"+(moveCounter % 2 == 0 ? "red;" : "green;"));
                            nextPlayer.setText("Next Move: Player " +(moveCounter % 2 == 0 ? "2" : "1"));
+                           if (moveCounter % 2 == 0){
+                               player1Token.setStyle("-fx-fill:red;-fx-opacity:0.5;");
+                               player2Token.setStyle("-fx-fill:green;-fx-opacity:1;");
+                           }
+                           else{
+                               player2Token.setStyle("-fx-fill:green;-fx-opacity:0.5;");
+                               player1Token.setStyle("-fx-fill:red;-fx-opacity:1;");
+                           }
                            if(this.checkWinner(rowNumber, columnNumber, boardPane)){
                                haveWinner.set(true);
+
                                String winner;
                                if(moveCounter % 2 == 0){
                                    winner = "Player 1 is the winner";
@@ -123,6 +134,8 @@ public class Main extends Application {
                                nextTurn.getChildren().clear();
                                nextTurn.getChildren().add(reset);
                                reset.setOnAction(event -> {
+                                   player1Token.setStyle("-fx-fill:red;-fx-opacity:1;");
+                                   player2Token.setStyle("-fx-fill:green;-fx-opacity:0.5;");
                                    haveWinner.set(false);
                                    textWin.setText("");
                                    moveCounter = 0;
