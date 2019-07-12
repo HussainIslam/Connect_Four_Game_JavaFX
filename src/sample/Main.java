@@ -207,10 +207,11 @@ public class Main extends Application {
     public boolean checkRightDownward(int rowIndex, int columnIndex, GridPane pane){
         int counter = 1;
         boolean fullSetMatch = false;
-        rowIndex++; columnIndex++;
-        while(rowIndex < ROW_NUMBER && columnIndex < COLUMN_NUMBER){
-            Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
-            Node temp0 = this.getNodeFromGridPane(rowIndex - 1, columnIndex - 1, pane);
+        while(rowIndex < ROW_NUMBER - 1 && columnIndex < COLUMN_NUMBER - 1){
+            Node temp1 = this.getNodeFromGridPane(rowIndex + 1, columnIndex + 1, pane);
+            Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
+            System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
+            System.out.println("Temp0 row: " +(rowIndex + 1) + " Column: " +(columnIndex + 1));
             if(temp0.getStyle().equals(temp1.getStyle())  && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
@@ -252,8 +253,7 @@ public class Main extends Application {
         while(rowIndex >= 0 && rowIndex < ROW_NUMBER - 1 && columnIndex > 0 && columnIndex < COLUMN_NUMBER){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
-            System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
-            System.out.println("Temp0 row: " +(rowIndex + 1) + " Column: " +(columnIndex - 1));
+
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
                 if( counter == 3 ){
