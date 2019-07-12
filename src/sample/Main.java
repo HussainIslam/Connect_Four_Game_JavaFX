@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -101,6 +102,16 @@ public class Main extends Application {
                                    winner = "Player 2 is the winner";
                                }
                                textWin.setText(winner);
+
+                               Button reset = new Button("Restart");
+                               nextTurn.getChildren().clear();
+                               nextTurn.getChildren().add(reset);
+                               reset.setOnAction(event -> {
+                                   haveWinner.set(false);
+                                   textWin.setText("");
+                                   this.resetGame(boardPane);
+                               });
+
                            }
                         }
                         catch (RowOutOfBoundsException roobe){
@@ -113,7 +124,6 @@ public class Main extends Application {
                         catch (Exception e){
                             System.out.println("Some other exception");
                         }
-
                         moveCounter++;
                     }
                 });
@@ -122,6 +132,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("Connect Four");
         primaryStage.setScene(new Scene(mainPane));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -217,7 +228,7 @@ public class Main extends Application {
             Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             if(temp0.getStyle().equals(temp1.getStyle())  && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
-                if( counter == 3 ){
+                if( counter == 4 ){
                     fullSetMatch = true;
                 }
             }
@@ -237,7 +248,7 @@ public class Main extends Application {
             Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
-                if( counter == 3 ){
+                if( counter == 4 ){
                     fullSetMatch = true;
                 }
             }
@@ -258,12 +269,14 @@ public class Main extends Application {
             Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
-                if( counter == 3 ){
+                System.out.println("After increasing: "+counter);
+                if( counter == 4 ){
                     fullSetMatch = true;
                 }
             }
             else{
                 counter = 1;
+                System.out.println("After reset: "+counter);
             }
             rowIndex++; columnIndex--;
         }
@@ -280,7 +293,7 @@ public class Main extends Application {
             //System.out.println("Temp0 row: " +(rowIndex - 1) + " Column: " +(columnIndex - 1));
             if(temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")){
                 counter++;
-                if( counter == 3 ){
+                if( counter == 4 ){
                     fullSetMatch = true;
                 }
             }
@@ -298,6 +311,15 @@ public class Main extends Application {
         alert.setHeaderText(header);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void resetGame(GridPane pane){
+        for(int row = 0; row < ROW_NUMBER; row++){
+            for (int column = 0; column < COLUMN_NUMBER; column++){
+                Node temp = getNodeFromGridPane(row, column, pane);
+                temp.setStyle("-fx-fill:white;");
+            }
+        }
     }
 
     public static void main(String[] args) {
