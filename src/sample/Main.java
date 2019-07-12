@@ -250,7 +250,7 @@ public class Main extends Application {
         int counter = 1;
         boolean fullSetMatch = false;
         rowIndex--; columnIndex++;
-        while(rowIndex < ROW_NUMBER  && columnIndex >= 1){
+        while(rowIndex > 0 && rowIndex < ROW_NUMBER  && columnIndex >= 1){
             Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             Node temp0 = this.getNodeFromGridPane(rowIndex + 1, columnIndex - 1, pane);
             System.out.println("Temp1 row: " +rowIndex + " Column: " +columnIndex);
