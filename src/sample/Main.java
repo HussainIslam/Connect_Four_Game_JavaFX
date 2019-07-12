@@ -227,9 +227,9 @@ public class Main extends Application {
     public boolean checkColumn(int columnIndex, GridPane pane){
         int counter = 1;
         boolean fullSetMatch = false;
-        for(int rowIndex = 1; rowIndex < ROW_NUMBER; rowIndex++){
-            Node temp1 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
-            Node temp0 = this.getNodeFromGridPane(rowIndex - 1, columnIndex, pane);
+        for(int rowIndex = 0; rowIndex < ROW_NUMBER - 1; rowIndex++){
+            Node temp1 = this.getNodeFromGridPane(rowIndex + 1, columnIndex, pane);
+            Node temp0 = this.getNodeFromGridPane(rowIndex, columnIndex, pane);
             if (temp0.getStyle().equals(temp1.getStyle()) && !temp1.getStyle().equals("-fx-fill:white;") && !temp0.getStyle().equals("-fx-fill:white;")) {
                 counter++;
                 if(counter == 4){
