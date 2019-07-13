@@ -13,4 +13,4 @@ The following technologies were used to developed the game:
  * JavaFX 12.0.1
  * Intellij Idea Community Edition
 
-
+![screenshot](https://github.com/HussainIslam/Connect_Four_Game_JavaFX/blob/master/Screenshot.JPG)
